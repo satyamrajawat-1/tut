@@ -42,17 +42,25 @@ const SubscriptionCard = ({ subscription, refresh }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden">
-      <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-        <h3 className="text-lg font-bold text-gray-800">
+    <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl">
+      
+      {/* Header */}
+      <div className="bg-gradient-to-r from-blue-50 via-white to-indigo-50 px-6 py-5 border-b border-gray-200">
+        <h3 className="text-xl font-semibold text-gray-800">
           {subscription.name}
         </h3>
-        <p className="text-sm text-gray-600 mt-1">₹{subscription.monthlyCost.toFixed(2)}/month</p>
+        <p className="mt-1 text-sm text-gray-500">
+          ₹{subscription.monthlyCost.toFixed(2)} <span className="text-gray-400">/ month</span>
+        </p>
       </div>
 
-      <div className="p-6">
-        <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-3">Monthly Usage</p>
-        <div className="flex flex-wrap gap-2 mb-4">
+      {/* Body */}
+      <div className="px-6 py-5">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Monthly Usage
+        </p>
+
+        <div className="flex flex-wrap gap-2">
           {months.map((month) => (
             <MonthTag
               key={month.key}
@@ -64,10 +72,14 @@ const SubscriptionCard = ({ subscription, refresh }) => {
         </div>
       </div>
 
-      <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
+      {/* Footer */}
+      <div className="flex items-center justify-end bg-gray-50 px-6 py-4 border-t border-gray-200">
         <button
           onClick={handleDelete}
-          className="text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-medium"
+          className="rounded-xl bg-gradient-to-r from-rose-500 to-red-600
+                     px-5 py-2 text-sm font-semibold text-white
+                     shadow-sm transition-all duration-200
+                     hover:from-rose-600 hover:to-red-700 hover:shadow-md"
         >
           Delete
         </button>
